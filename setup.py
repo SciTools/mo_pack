@@ -8,7 +8,7 @@ from Cython.Build import cythonize
 
 extensions = [setuptools.Extension(
     "mo_pack._packing",
-    ["lib/mo_pack/packing.pyx"],
+    ["lib/mo_pack/_packing.pyx"],
     include_dirs=[np.get_include()],
     libraries=['mo_unpack'])]
 

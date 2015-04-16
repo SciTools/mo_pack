@@ -66,7 +66,6 @@ def decode_rle(packed_data_buffer, int nrows,
     packed_data = np.frombuffer(packed_data_buffer, dtype=np.uint8)
 
     cdef long ret_code
-    print 'N:', len(packed_data_buffer), packed_length, nrows * ncols, packed_data.size
     with nogil:
         ret_code = runlen_decode(unpacked_data.data, packed_length,
                                  packed_data.data, nrows * ncols,

@@ -1,4 +1,4 @@
-# (C) British Crown Copyright 2014, Met Office
+# (C) British Crown Copyright 2015, Met Office
 #
 # This file is part of mo_pack.
 #
@@ -16,4 +16,6 @@
 # along with mo_pack. If not, see <http://www.gnu.org/licenses/>.
 from __future__ import absolute_import
 
-from ._packing import (unpack_wgdos, pack_wgdos, decode_rle, encode_rle)
+from ._packing import (unpack_wgdos, pack_wgdos)
+
+__version__ = '0.1.0dev0'

@@ -1,4 +1,4 @@
-# (C) British Crown Copyright 2014, Met Office
+# (C) British Crown Copyright 2015, Met Office
 #
 # This file is part of mo_pack.
 #
@@ -16,6 +16,7 @@
 # along with mo_pack. If not, see <http://www.gnu.org/licenses/>.
 """Tests for the `mo_pack.pack_wgdos` and `mo_pack.unpack_wgdos` functions."""
 
+import os
 import unittest
 
 import numpy as np
@@ -35,6 +36,25 @@ class TestPackWGDOS(unittest.TestCase):
         packed_data = mo_pack.pack_wgdos(data)
         self.assert_equal_when_unpacked(packed_data, data)
 
+    def test_mdi(self):
+        data = np.arange(12, dtype=np.float32).reshape(3, 4)
+        packed_data = mo_pack.pack_wgdos(data, missing_data_indicator=4.0)
+        expected_data = data
+        data[1,0] = 4.0
+        self.assert_equal_when_unpacked(packed_data, data, mdi=4.0)
+
+    def test_accuracy(self):
+        data = np.array([[0.1234, 0.2345, 0.3456], [0.4567, 0.5678, 0.6789]],
+                        dtype=np.float32)
+        packed = mo_pack.pack_wgdos(data, accuracy=-4)
+        unpacked_data = mo_pack.unpack_wgdos(packed, 2, 3)
+        expected = np.array([[ 0.12340003,  0.18590003,  0.34560001],
+                             [ 0.40810001,  0.56779999,  0.63029999]],
+                             dtype=np.float32)
+        np.testing.assert_array_equal(unpacked_data, expected)
+
+
+class TestUnpackWGDOS(unittest.TestCase):
     def test_incorrect_size(self):
         data = np.arange(77, dtype=np.float32).reshape(7, 11)     
         packed_data = mo_pack.pack_wgdos(data)
@@ -47,20 +67,10 @@ class TestPackWGDOS(unittest.TestCase):
         unpacked_data = mo_pack.unpack_wgdos(packed_data, 4, 6)
         np.testing.assert_array_equal(unpacked_data, data.reshape(4, 6))
 
-    def test_mdi(self):
-        data = np.arange(12, dtype=np.float32).reshape(3, 4)
-        packed_data = mo_pack.pack_wgdos(data, missing_data_indicator=4.0)
-        expected_data = data
-        data[1,0] = 4.0
-        self.assert_equal_when_unpacked(packed_data, data, mdi=4.0)
-
-    def test_accuracy(self):
-        pass
-
-
-class TestUnpackWGDOS(unittest.TestCase):
     def test_real_data(self):
-        fname = 'test_data/nae.20100104-06_0001_0001.pp'
+        test_dir = os.path.dirname(os.path.abspath(__file__))
+        fname = os.path.join(test_dir, 'test_data',
+                             'nae.20100104-06_0001_0001.pp')
         with open(fname, 'rb') as fh:
             fh.seek(268)
             data = mo_pack.unpack_wgdos(fh.read(339464), 360, 600)

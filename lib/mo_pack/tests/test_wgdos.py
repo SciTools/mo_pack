@@ -40,7 +40,7 @@ class TestPackWGDOS(unittest.TestCase):
         data = np.arange(12, dtype=np.float32).reshape(3, 4)
         packed_data = mo_pack.pack_wgdos(data, missing_data_indicator=4.0)
         expected_data = data
-        data[1,0] = 4.0
+        data[1, 0] = 4.0
         self.assert_equal_when_unpacked(packed_data, data, mdi=4.0)
 
     def test_accuracy(self):
@@ -48,15 +48,15 @@ class TestPackWGDOS(unittest.TestCase):
                         dtype=np.float32)
         packed = mo_pack.pack_wgdos(data, accuracy=-4)
         unpacked_data = mo_pack.unpack_wgdos(packed, 2, 3)
-        expected = np.array([[ 0.12340003,  0.18590003,  0.34560001],
-                             [ 0.40810001,  0.56779999,  0.63029999]],
-                             dtype=np.float32)
+        expected = np.array([[0.12340003, 0.18590003, 0.34560001],
+                             [0.40810001, 0.56779999, 0.63029999]],
+                            dtype=np.float32)
         np.testing.assert_array_equal(unpacked_data, expected)
 
 
 class TestUnpackWGDOS(unittest.TestCase):
     def test_incorrect_size(self):
-        data = np.arange(77, dtype=np.float32).reshape(7, 11)     
+        data = np.arange(77, dtype=np.float32).reshape(7, 11)
         packed_data = mo_pack.pack_wgdos(data)
         with self.assertRaises(ValueError):
             unpacked_data = mo_pack.unpack_wgdos(packed_data, 5, 6)
@@ -75,10 +75,10 @@ class TestUnpackWGDOS(unittest.TestCase):
             fh.seek(268)
             data = mo_pack.unpack_wgdos(fh.read(339464), 360, 600)
         assert_almost_equal(data.mean(), 130.84093, decimal=4)
-        expected = [[ 388.78125 ,  389.46875 ,  384.0625  ,  388.46875 ],
-                    [ 388.09375 ,  381.375   ,  374.28125 ,  374.875   ],
-                    [ 382.34375 ,  373.671875,  371.171875,  368.25    ],
-                    [ 385.265625,  373.921875,  368.5     ,  365.3125  ]]
+        expected = [[388.78125, 389.46875, 384.0625, 388.46875],
+                    [388.09375, 381.375, 374.28125, 374.875],
+                    [382.34375, 373.671875, 371.171875, 368.25],
+                    [385.265625, 373.921875, 368.5, 365.3125]]
         assert_array_equal(data[:4, :4], expected)
 
 

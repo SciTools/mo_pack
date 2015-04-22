@@ -16,6 +16,8 @@
 # along with mo_pack. If not, see <http://www.gnu.org/licenses/>.
 """Tests for the `mo_pack.pack_wgdos` and `mo_pack.unpack_wgdos` functions."""
 
+from __future__ import absolute_import, division, print_function
+
 import os
 import unittest
 

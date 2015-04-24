@@ -14,7 +14,7 @@
 #
 # You should have received a copy of the GNU Lesser General Public License
 # along with mo_pack. If not, see <http://www.gnu.org/licenses/>.
-from __future__ import absolute_import
+from __future__ import absolute_import, division, print_function
 
 from ._packing import (unpack_wgdos, pack_wgdos)
 

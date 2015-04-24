@@ -15,3 +15,5 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with mo_pack. If not, see <http://www.gnu.org/licenses/>.
 """Tests for mo_pack."""
+
+from __future__ import absolute_import, division, print_function

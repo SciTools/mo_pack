@@ -17,7 +17,7 @@ extensions = [setuptools.Extension(
 setup(
     name='mo_pack',
     description='Python wrapper to libmo_unpack',
-    version='0.1.0dev0',
+    version='0.1.0',
     ext_modules=cythonize(extensions),
     packages=['mo_pack'],
     package_dir={'': 'lib'},

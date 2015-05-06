@@ -18,4 +18,4 @@ from __future__ import absolute_import, division, print_function
 
 from ._packing import (unpack_wgdos, pack_wgdos)
 
-__version__ = '0.1.0dev0'
+__version__ = '0.1.0'

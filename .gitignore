@@ -1,0 +1,9 @@
+*.pyc
+
+build/
+dist/
+
+lib/mo_pack.egg-info/
+
+lib/mo_pack/_packing.c
+lib/mo_pack/_packing*.so

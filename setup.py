@@ -1,11 +1,25 @@
 from __future__ import absolute_import, division, print_function
 
 from distutils.core import setup
+import os
 
 import numpy as np
 import setuptools
 
 from Cython.Build import cythonize
+
+
+def file_walk_relative(top, remove=''):
+    """
+    Returns a generator of files from the top of the tree, removing
+    the given prefix from the root/file result.
+
+    """
+    top = top.replace('/', os.path.sep)
+    remove = remove.replace('/', os.path.sep)
+    for root, dirs, files in os.walk(top):
+        for file in files:
+            yield os.path.join(root, file).replace(remove, '')
 
 
 extensions = [setuptools.Extension(
@@ -19,8 +33,11 @@ setup(
     description='Python wrapper to libmo_unpack',
     version='0.1.0dev0',
     ext_modules=cythonize(extensions),
-    packages=['mo_pack'],
+    packages=['mo_pack', 'mo_pack.tests'],
     package_dir={'': 'lib'},
+    package_data={'mo_pack': list(file_walk_relative('lib/mo_pack/tests/test_data/',
+                                                     remove='lib/mo_pack/'))
+                 },
     classifiers=[
             'Development Status :: 3 - Alpha',
             ('License :: OSI Approved :: '

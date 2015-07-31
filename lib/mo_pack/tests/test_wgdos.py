@@ -14,7 +14,11 @@
 #
 # You should have received a copy of the GNU Lesser General Public License
 # along with mo_pack. If not, see <http://www.gnu.org/licenses/>.
-"""Tests for the `mo_pack.pack_wgdos` and `mo_pack.unpack_wgdos` functions."""
+"""
+Tests for the `mo_pack.compress_wgdos` and `mo_pack.decompress_wgdos`
+functions.
+
+"""
 
 from __future__ import absolute_import, division, print_function
 
@@ -28,46 +32,49 @@ import mo_pack
 
 
 class TestPackWGDOS(unittest.TestCase):
-    def assert_equal_when_unpacked(self, packed_data, expected_array, mdi=0):
+    def assert_equal_when_decompressed(self, compressed_data, expected_array,
+                                       mdi=0):
         x, y = expected_array.shape
-        unpacked_data = mo_pack.unpack_wgdos(packed_data, x, y, mdi)
-        np.testing.assert_array_equal(unpacked_data, expected_array)
+        decompressed_data = mo_pack.decompress_wgdos(
+            compressed_data, x, y, mdi)
+        np.testing.assert_array_equal(decompressed_data, expected_array)
 
     def test_pack_wgdos(self):
         data = np.arange(42, dtype=np.float32).reshape(7, 6)
-        packed_data = mo_pack.pack_wgdos(data)
-        self.assert_equal_when_unpacked(packed_data, data)
+        compressed_data = mo_pack.compress_wgdos(data)
+        self.assert_equal_when_decompressed(compressed_data, data)
 
     def test_mdi(self):
         data = np.arange(12, dtype=np.float32).reshape(3, 4)
-        packed_data = mo_pack.pack_wgdos(data, missing_data_indicator=4.0)
+        compressed_data = mo_pack.compress_wgdos(data,
+                                                 missing_data_indicator=4.0)
         expected_data = data
         data[1, 0] = 4.0
-        self.assert_equal_when_unpacked(packed_data, data, mdi=4.0)
+        self.assert_equal_when_decompressed(compressed_data, data, mdi=4.0)
 
     def test_accuracy(self):
         data = np.array([[0.1234, 0.2345, 0.3456], [0.4567, 0.5678, 0.6789]],
                         dtype=np.float32)
-        packed = mo_pack.pack_wgdos(data, accuracy=-4)
-        unpacked_data = mo_pack.unpack_wgdos(packed, 2, 3)
+        compressed = mo_pack.compress_wgdos(data, accuracy=-4)
+        decompressed_data = mo_pack.decompress_wgdos(compressed, 2, 3)
         expected = np.array([[0.12340003, 0.18590003, 0.34560001],
                              [0.40810001, 0.56779999, 0.63029999]],
                             dtype=np.float32)
-        np.testing.assert_array_equal(unpacked_data, expected)
+        np.testing.assert_array_equal(decompressed_data, expected)
 
 
-class TestUnpackWGDOS(unittest.TestCase):
+class TestdecompressWGDOS(unittest.TestCase):
     def test_incorrect_size(self):
         data = np.arange(77, dtype=np.float32).reshape(7, 11)
-        packed_data = mo_pack.pack_wgdos(data)
+        compressed_data = mo_pack.compress_wgdos(data)
         with self.assertRaises(ValueError):
-            unpacked_data = mo_pack.unpack_wgdos(packed_data, 5, 6)
+            decompressed_data = mo_pack.decompress_wgdos(compressed_data, 5, 6)
 
     def test_different_shape(self):
         data = np.arange(24, dtype=np.float32).reshape(8, 3)
-        packed_data = mo_pack.pack_wgdos(data)
-        unpacked_data = mo_pack.unpack_wgdos(packed_data, 4, 6)
-        np.testing.assert_array_equal(unpacked_data, data.reshape(4, 6))
+        compressed_data = mo_pack.compress_wgdos(data)
+        decompressed_data = mo_pack.decompress_wgdos(compressed_data, 4, 6)
+        np.testing.assert_array_equal(decompressed_data, data.reshape(4, 6))
 
     def test_real_data(self):
         test_dir = os.path.dirname(os.path.abspath(__file__))
@@ -75,7 +82,7 @@ class TestUnpackWGDOS(unittest.TestCase):
                              'nae.20100104-06_0001_0001.pp')
         with open(fname, 'rb') as fh:
             fh.seek(268)
-            data = mo_pack.unpack_wgdos(fh.read(339464), 360, 600)
+            data = mo_pack.decompress_wgdos(fh.read(339464), 360, 600)
         assert_almost_equal(data.mean(), 130.84694, decimal=1)
         expected = [[388.78125, 389.46875, 384.0625, 388.46875],
                     [388.09375, 381.375, 374.28125, 374.875],

@@ -29,7 +29,7 @@ install:
   # Customise the testing environment
   # ---------------------------------
   - conda config --add channels scitools
-  - conda install cython libmo_unpack nose numpy
+  - conda install cython libmo_unpack>=3 nose numpy
 
   # Conda debug
   # -----------

@@ -22,11 +22,10 @@ def file_walk_relative(top, remove=''):
             yield os.path.join(root, file).replace(remove, '')
 
 
-extensions = [setuptools.Extension(
-    "mo_pack._packing",
-    ["lib/mo_pack/_packing.pyx"],
-    include_dirs=[np.get_include()],
-    libraries=['mo_unpack'])]
+extensions = [setuptools.Extension('mo_pack._packing',
+                                   ['lib/mo_pack/_packing.pyx'],
+                                   include_dirs=[np.get_include()],
+                                   libraries=['mo_unpack'])]
 
 setup(
     name='mo_pack',
@@ -35,9 +34,9 @@ setup(
     ext_modules=cythonize(extensions),
     packages=['mo_pack', 'mo_pack.tests'],
     package_dir={'': 'lib'},
-    package_data={'mo_pack': list(file_walk_relative('lib/mo_pack/tests/test_data/',
-                                                     remove='lib/mo_pack/'))
-                 },
+    package_data={'mo_pack': list(
+        file_walk_relative('lib/mo_pack/tests/test_data/',
+                           remove='lib/mo_pack/'))},
     classifiers=[
             'Development Status :: 3 - Alpha',
             ('License :: OSI Approved :: '

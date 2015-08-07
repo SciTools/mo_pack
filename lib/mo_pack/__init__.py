@@ -16,6 +16,7 @@
 # along with mo_pack. If not, see <http://www.gnu.org/licenses/>.
 from __future__ import absolute_import, division, print_function
 
-from ._packing import (unpack_wgdos, pack_wgdos)
+from ._packing import (compress_rle, compress_wgdos,
+                       decompress_rle, decompress_wgdos)
 
 __version__ = '0.1.0dev0'

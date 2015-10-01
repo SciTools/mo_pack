@@ -1,6 +1,6 @@
 # mo_pack
 
-Support for packing formats used to encode the data payloads of UM "fields".
+A python module containing packing methods used to encode and decode the data payloads of UM "fields".
 
 Supports WGDOS and RLE encoding methods.
 

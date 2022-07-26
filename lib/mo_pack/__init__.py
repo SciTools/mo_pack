@@ -1,22 +1,10 @@
-# (C) British Crown Copyright 2015, Met Office
+# Copyright mo_pack contributors
 #
-# This file is part of mo_pack.
-#
-# mo_pack is free software: you can redistribute it and/or modify it under
-# the terms of the GNU Lesser General Public License as published by the
-# Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# mo_pack is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU Lesser General Public License for more details.
-#
-# You should have received a copy of the GNU Lesser General Public License
-# along with mo_pack. If not, see <http://www.gnu.org/licenses/>.
+# This file is part of mo_pack and is released under the BSD license.
+# See LICENSE in the root of the repository for full licensing details.
 from __future__ import absolute_import, division, print_function
 
 from ._packing import (compress_rle, compress_wgdos,
                        decompress_rle, decompress_wgdos)
 
-__version__ = '0.2.0'
+__version__ = '0.2.0.post0'

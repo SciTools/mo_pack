@@ -1,0 +1,9 @@
+prune .github
+prune requirements
+recursive-include src *.py *.pyx
+
+include .git_archival.txt
+include .gitattributes
+exclude .gitignore
+exclude .pre-commit-config.yaml
+include *.md

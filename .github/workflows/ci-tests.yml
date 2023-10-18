@@ -1,0 +1,57 @@
+name: ci-tests
+
+on:
+  pull_request:
+
+  push:
+    branches:
+      - "main"
+      - "v*x"
+      - "!conda-lock-auto-update"
+      - "!pre-commit-ci-update-config"
+      - "!dependabot/*"
+    tags:
+      - "v*"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tests:
+    name: "tests py${{ matrix.python-version }}"
+    runs-on: "ubuntu-latest"
+    defaults:
+      run:
+        shell: bash -l {0}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: "conda install"
+      uses: conda-incubator/setup-miniconda@v2
+      with:
+        miniforge-variant: Mambaforge
+        miniforge-version: latest
+        python-version: ${{ matrix.python-version }}
+        activate-environment: mo-pack-dev
+        environment-file: requirements/mo_pack.yml
+        auto-update-conda: false
+        auto-activate-base: false
+
+    - name: "conda configuration"
+      run: |
+        conda info
+        conda list --explicit
+
+    - name: "test with py${{ matrix.python-version }}"
+      run: |
+        python setup.py build_ext --inplace
+        pytest

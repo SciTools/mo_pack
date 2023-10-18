@@ -4,8 +4,6 @@
 # See LICENSE in the root of the repository for full licensing details.
 """Tests for the `mo_pack.decompress_rle` function."""
 
-from __future__ import absolute_import, division, print_function
-
 import unittest
 
 import numpy as np

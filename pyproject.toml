@@ -1,0 +1,81 @@
+[build-system]
+# defined by PEP-518
+requires = [
+    "Cython>=3",
+    "oldest-supported-numpy",
+    "setuptools>=64",
+    "setuptools_scm[toml]>=8",
+    "wheel",
+]
+# defined by PEP-517
+build-backend = "setuptools.build_meta"
+
+
+[project]
+authors = [
+    {name = "SciTools Contributors", email = "scitools.pub@gmail.com"}
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: BSD License",
+    "Natural Language :: English",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Topic :: Scientific/Engineering :: Atmospheric Science",
+]
+description = "Python wrapper to libmo_unpack"
+dynamic = [
+    "readme",
+    "version",
+]
+license.file = "LICENSE"
+name = "mo_pack"
+requires-python = ">=3.9"
+
+
+[project.urls]
+Code = "https://github.com/SciTools/mo_pack"
+Issues = "https://github.com/SciTools/mo_pack/issues"
+
+
+[tool.check-manifest]
+ignore = [
+    "src/mo_pack/_packing.c",
+    "src/mo_pack/_version.py",
+]
+
+
+[tool.pytest.ini_options]
+addopts = ["-ra"]
+minversion = "6.0"
+testpaths = "src/mo_pack"
+
+
+[tool.setuptools]
+license-files = ["LICENSE"]
+zip-safe = false
+
+
+[tool.setuptools.dynamic]
+readme = {file = "README.md", content-type = "text/markdown"}
+
+
+[tool.setuptools.packages.find]
+include = ["mo_pack*"]
+where = ["src"]
+
+
+[tool.setuptools.package-data]
+mo_pack = ["tests/test_data/*.pp"]
+
+
+[tool.setuptools_scm]
+write_to = "src/mo_pack/_version.py"
+local_scheme = "dirty-tag"
+version_scheme = "release-branch-semver"

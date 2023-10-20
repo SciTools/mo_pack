@@ -2,8 +2,6 @@
 #
 # This file is part of mo_pack and is released under the BSD license.
 # See LICENSE in the root of the repository for full licensing details.
-from __future__ import absolute_import, division, print_function
-
 import numpy as np
 cimport numpy as np
 
@@ -51,13 +49,14 @@ cdef extern from "wgdosstuff.h":
                     function* parent) nogil
 
 
-cdef void MO_syslog(int value, char* message, const function* const caller):
+
+cdef void MO_syslog(int value, char* message, const function* const caller) noexcept:
     # A dumb implementation of the system logging - i.e. don't do anything.
     pass
 
 ## For debugging purposes, enable the following (and comment out the above).
 #from libc.stdio cimport printf
-#cdef void MO_syslog(int value, char* message, const function* const caller):
+#cdef void MO_syslog(int value, char* message, const function* const caller) noexcept:
 #    printf(message)
 #    printf('\n')
 

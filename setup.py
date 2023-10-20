@@ -1,56 +1,46 @@
-from __future__ import absolute_import, division, print_function
+from setuptools import Command, Extension, setup
 
-from distutils.core import setup
-import os
-
-import numpy as np
-import setuptools
+from pathlib import Path
 
 from Cython.Build import cythonize
+import numpy as np
+
+BASE_DIR = Path(__file__).resolve().parent
+PACKAGE_NAME = "mo_pack"
+SRC_DIR = BASE_DIR / "src"
+PACKAGE_DIR = SRC_DIR / PACKAGE_NAME
 
 
-def file_walk_relative(top, remove=''):
-    """
-    Returns a generator of files from the top of the tree, removing
-    the given prefix from the root/file result.
+class CleanCython(Command):
+    description = "Purge artifacts built by Cython"
+    user_options = []
 
-    """
-    top = top.replace('/', os.path.sep)
-    remove = remove.replace('/', os.path.sep)
-    for root, dirs, files in os.walk(top):
-        for file in files:
-            yield os.path.join(root, file).replace(remove, '')
+    def initialize_options(self):
+        pass
+
+    def finalize_options(self):
+        pass
+
+    def run(self):
+        for path in PACKAGE_DIR.rglob("*"):
+            if path.suffix in (".pyc", ".pyo", ".c", ".so"):
+                msg = f"clean: removing file {path}"
+                print(msg)
+                path.unlink()
 
 
-extensions = [setuptools.Extension('mo_pack._packing',
-                                   ['lib/mo_pack/_packing.pyx'],
-                                   include_dirs=[np.get_include()],
-                                   libraries=['mo_unpack'])]
+# https://setuptools.pypa.io/en/latest/userguide/ext_modules.html
+extension = Extension(
+    f"{PACKAGE_NAME}._packing",
+    [f"src/{PACKAGE_NAME}/_packing.pyx"],
+    include_dirs=[np.get_include()],
+    libraries=["mo_unpack"],
+    # https://cython.readthedocs.io/en/latest/src/userguide/migrating_to_cy30.html?highlight=NPY_NO_DEPRECATED_API#numpy-c-api
+    define_macros=[("NPY_NO_DEPRECATED_API", "NPY_1_7_API_VERSION")],
+    extra_compile_args=["-std=c99"],
+)
 
 setup(
-    name='mo_pack',
-    description='Python wrapper to libmo_unpack',
-    version='0.2.0.post0',
-    ext_modules=cythonize(extensions),
-    packages=['mo_pack', 'mo_pack.tests'],
-    package_dir={'': 'lib'},
-    package_data={'mo_pack': list(
-        file_walk_relative('lib/mo_pack/tests/test_data/',
-                           remove='lib/mo_pack/'))},
-    classifiers=[
-            'Development Status :: 3 - Alpha',
-            'License :: OSI Approved :: BSD License',
-            'Operating System :: MacOS :: MacOS X',
-            'Operating System :: POSIX',
-            'Operating System :: POSIX :: AIX',
-            'Operating System :: POSIX :: Linux',
-            'Programming Language :: Python',
-            'Programming Language :: Python :: 2',
-            'Programming Language :: Python :: 2.7',
-            'Programming Language :: Python :: 3',
-            'Programming Language :: Python :: 3.3',
-            'Programming Language :: Python :: 3.4',
-            'Topic :: Scientific/Engineering',
-            'Topic :: Scientific/Engineering :: GIS',
-    ],
+    cmdclass={"clean_cython": CleanCython},
+    ext_modules=cythonize(extension, language_level="3str"),
 )

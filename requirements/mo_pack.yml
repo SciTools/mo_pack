@@ -1,0 +1,22 @@
+name: mo-pack-dev
+
+channels:
+  - conda-forge
+
+dependencies:
+
+# setup dependencies
+  - setuptools >=64
+  - setuptools-scm >=8
+
+# core dependencies
+  - numpy >1.21
+  - cython >=3
+  - libmo_unpack
+
+# developer dependencies
+  - pip
+  - pre-commit
+
+# test dependencies
+  - pytest

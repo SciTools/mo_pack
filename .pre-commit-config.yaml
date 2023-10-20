@@ -1,0 +1,53 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+# See https://pre-commit.ci/#configuration
+
+ci:
+  autofix_prs: false
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: "v4.5.0"
+    hooks:
+      # Prevent giant files from being committed.
+    - id: check-added-large-files
+      # Check whether files parse as valid Python.
+    - id: check-ast
+      # Check for file name conflicts on case-insensitive file-systems.
+    - id: check-case-conflict
+      # Check for files that contain merge conflict strings.
+    - id: check-merge-conflict
+      # Check for debugger imports and py37+ `breakpoint()` calls in Python source.
+    - id: debug-statements
+      # Check TOML file syntax.
+    - id: check-toml
+      # Check YAML file syntax.
+    - id: check-yaml
+      # Makes sure files end in a newline and only a newline
+    - id: end-of-file-fixer
+      exclude: nae.20100104-06_0001_0001.pp
+      # Replaces or checks mixed line ending
+    - id: mixed-line-ending
+      exclude: nae.20100104-06_0001_0001.pp
+      # Don't commit to main branch.
+      #- id: no-commit-to-branch
+      # Trims trailing whitespace
+    - id: trailing-whitespace
+      exclude: nae.20100104-06_0001_0001.pp
+
+  - repo: https://github.com/codespell-project/codespell
+    rev: "v2.2.6"
+    hooks:
+    - id: codespell
+      types_or: [python, markdown]
+      additional_dependencies: [tomli]
+
+  - repo: https://github.com/aio-libs/sort-all
+    rev: "v1.2.0"
+    hooks:
+      - id: sort-all
+        types: [file, python]
+
+  - repo: https://github.com/abravalheri/validate-pyproject
+    rev: "v0.15"
+    hooks:
+      - id: validate-pyproject

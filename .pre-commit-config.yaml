@@ -35,7 +35,7 @@ repos:
       exclude: nae.20100104-06_0001_0001.pp
 
   - repo: https://github.com/codespell-project/codespell
-    rev: "v2.2.6"
+    rev: "v2.3.0"
     hooks:
     - id: codespell
       types_or: [python, markdown]

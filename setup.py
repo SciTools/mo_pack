@@ -13,21 +13,21 @@ SRC_DIR = BASE_DIR / "src"
 PACKAGE_DIR = SRC_DIR / PACKAGE_NAME
 
 
-class CleanCython(Command):
+class CleanCython(Command):  # type: ignore[misc]
     """Command for purging artifacts built by Cython."""
 
     description = "Purge artifacts built by Cython"
     user_options: list[tuple[str, str, str]] = []
 
-    def initialize_options(self):
+    def initialize_options(self) -> None:
         """Set options/attributes/caches used by the command to default values."""
         pass
 
-    def finalize_options(self):
+    def finalize_options(self) -> None:
         """Set final values for all options/attributes used by the command."""
         pass
 
-    def run(self):
+    def run(self) -> None:
         """Execute the actions intended by the command."""
         for path in PACKAGE_DIR.rglob("*"):
             if path.suffix in (".pyc", ".pyo", ".c", ".so"):

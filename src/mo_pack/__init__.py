@@ -8,3 +8,11 @@ try:
     from ._version import version as __version__
 except ModuleNotFoundError:
     __version__ = "unknown"
+
+__all__ = [
+    "__version__",
+    "compress_rle",
+    "compress_wgdos",
+    "decompress_rle",
+    "decompress_wgdos",
+]

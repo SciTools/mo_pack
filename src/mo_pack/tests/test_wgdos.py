@@ -33,7 +33,7 @@ class TestPackWGDOS(unittest.TestCase):
         compressed_data = mo_pack.compress_wgdos(data, missing_data_indicator=4.0)
         expected_data = data
         data[1, 0] = 4.0
-        self.assert_equal_when_decompressed(compressed_data, data, mdi=4.0)
+        self.assert_equal_when_decompressed(compressed_data, expected_data, mdi=4.0)
 
     def test_accuracy(self):
         data = np.array(
@@ -56,7 +56,7 @@ class TestdecompressWGDOS(unittest.TestCase):
         data = np.arange(77, dtype=np.float32).reshape(7, 11)
         compressed_data = mo_pack.compress_wgdos(data)
         with self.assertRaises(ValueError):
-            decompressed_data = mo_pack.decompress_wgdos(compressed_data, 5, 6)
+            _ = mo_pack.decompress_wgdos(compressed_data, 5, 6)
 
     def test_different_shape(self):
         data = np.arange(24, dtype=np.float32).reshape(8, 3)

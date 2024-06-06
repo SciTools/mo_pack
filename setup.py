@@ -13,7 +13,7 @@ PACKAGE_DIR = SRC_DIR / PACKAGE_NAME
 
 class CleanCython(Command):
     description = "Purge artifacts built by Cython"
-    user_options = []
+    user_options: list[tuple[str, str, str]] = []
 
     def initialize_options(self):
         pass

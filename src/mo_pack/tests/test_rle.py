@@ -22,8 +22,7 @@ MDI = 999
 class Test(unittest.TestCase):
     def _test(self, original, rows, cols):
         compressed_data = compress_rle(original, missing_data_indicator=MDI)
-        result = decompress_rle(compressed_data, rows, cols,
-                                missing_data_indicator=MDI)
+        result = decompress_rle(compressed_data, rows, cols, missing_data_indicator=MDI)
         assert_array_equal(result, original)
 
     def test_no_mdi(self):
@@ -36,5 +35,5 @@ class Test(unittest.TestCase):
         self._test(data, 3, 4)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

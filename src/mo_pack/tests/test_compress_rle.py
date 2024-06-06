@@ -15,7 +15,7 @@ class Test(unittest.TestCase):
     def test_no_mdi(self):
         data = np.arange(42, dtype=np.float32).reshape(7, 6)
         compressed_data = compress_rle(data)
-        expected = np.arange(42, dtype='f4')
+        expected = np.arange(42, dtype="f4")
         expected.byteswap(True)
         self.assertEqual(compressed_data, expected.data)
 
@@ -23,8 +23,7 @@ class Test(unittest.TestCase):
         data = np.arange(12, dtype=np.float32).reshape(3, 4) + 5
         data[1, 1:] = 999
         compressed_data = compress_rle(data, missing_data_indicator=999)
-        expected = np.array([5, 6, 7, 8, 9, 999, 3, 13, 14, 15, 16],
-                                 dtype='f4')
+        expected = np.array([5, 6, 7, 8, 9, 999, 3, 13, 14, 15, 16], dtype="f4")
         expected.byteswap(True)
         self.assertEqual(compressed_data, expected.data)
 
@@ -37,5 +36,5 @@ class Test(unittest.TestCase):
             compress_rle(data, missing_data_indicator=666)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

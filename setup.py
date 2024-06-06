@@ -1,3 +1,5 @@
+"""Register the Cython extension."""
+
 from setuptools import Command, Extension, setup
 
 from pathlib import Path
@@ -12,16 +14,21 @@ PACKAGE_DIR = SRC_DIR / PACKAGE_NAME
 
 
 class CleanCython(Command):
+    """Command for purging artifacts built by Cython."""
+
     description = "Purge artifacts built by Cython"
     user_options: list[tuple[str, str, str]] = []
 
     def initialize_options(self):
+        """Set options/attributes/caches used by the command to default values."""
         pass
 
     def finalize_options(self):
+        """Set final values for all options/attributes used by the command."""
         pass
 
     def run(self):
+        """Execute the actions intended by the command."""
         for path in PACKAGE_DIR.rglob("*"):
             if path.suffix in (".pyc", ".pyo", ".c", ".so"):
                 msg = f"clean: removing file {path}"

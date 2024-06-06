@@ -102,3 +102,4 @@ repos:
     hooks:
       - id: numpydoc-validation
         types: [file, python]
+        exclude: 'src\/mo_pack\/tests'

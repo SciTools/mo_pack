@@ -5,7 +5,6 @@ requires = [
     "oldest-supported-numpy",
     "setuptools>=64",
     "setuptools_scm[toml]>=8",
-    "wheel",
 ]
 # defined by PEP-517
 build-backend = "setuptools.build_meta"
@@ -52,9 +51,12 @@ ignore = [
 
 
 [tool.pytest.ini_options]
-addopts = ["-ra"]
+addopts = ["-ra", "--strict-config", "--strict-markers"]
+filterwarnings = ["error"]
+log_cli_level = "INFO"
 minversion = "6.0"
 testpaths = "src/mo_pack"
+xfail_strict = true
 
 
 [tool.setuptools]
@@ -117,4 +119,16 @@ exclude = [
     '\.__eq__$',
     '\.__ne__$',
     '\.__repr__$',
+]
+
+[tool.repo-review]
+ignore = [
+    # https://learn.scientific-python.org/development/guides/style/#PC170
+    "PC170",  # Uses PyGrep hooks
+    # https://learn.scientific-python.org/development/guides/style/#PC180
+    "PC180",  # Uses prettier
+    # https://learn.scientific-python.org/development/guides/packaging-simple/#PY004
+    "PY004",  # Has docs folder
+    # https://learn.scientific-python.org/development/guides/docs/#readthedocsyaml
+    "RTD",    # ReadTheDocs
 ]

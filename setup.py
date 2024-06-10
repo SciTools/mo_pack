@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import ClassVar, Self
+from typing import ClassVar
 
 from Cython.Build import cythonize
 import numpy as np
@@ -21,13 +21,13 @@ class CleanCython(Command):  # type: ignore[misc]
     description = "Purge artifacts built by Cython"
     user_options: ClassVar[list[tuple[str, str, str]]] = []
 
-    def initialize_options(self: Self) -> None:
+    def initialize_options(self: CleanCython) -> None:
         """Set options/attributes/caches used by the command to default values."""
 
-    def finalize_options(self: Self) -> None:
+    def finalize_options(self: CleanCython) -> None:
         """Set final values for all options/attributes used by the command."""
 
-    def run(self: Self) -> None:
+    def run(self: CleanCython) -> None:
         """Execute the actions intended by the command."""
         for path in PACKAGE_DIR.rglob("*"):
             if path.suffix in (".pyc", ".pyo", ".c", ".so"):

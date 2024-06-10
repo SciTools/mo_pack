@@ -2,8 +2,7 @@
 #
 # This file is part of mo_pack and is released under the BSD license.
 # See LICENSE in the root of the repository for full licensing details.
-"""
-Python bindings for the C library **libmo_unpack**.
+"""Python bindings for the C library **libmo_unpack**.
 
 Provides Python bindings to the C library
 `libmo_unpack <https://github.com/SciTools/libmo_unpack>`_ , which contains

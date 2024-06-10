@@ -2,22 +2,21 @@
 #
 # This file is part of mo_pack and is released under the BSD license.
 # See LICENSE in the root of the repository for full licensing details.
-"""
-Tests for the `mo_pack.compress_wgdos` and `mo_pack.decompress_wgdos`
+"""Tests for the `mo_pack.compress_wgdos` and `mo_pack.decompress_wgdos`
 functions.
 
 """
 
-import os
-import unittest
+from pathlib import Path
 
 import numpy as np
-from numpy.testing import assert_array_equal, assert_almost_equal
+from numpy.testing import assert_almost_equal, assert_array_equal
+import pytest
 
 import mo_pack
 
 
-class TestPackWGDOS(unittest.TestCase):
+class TestPackWGDOS:
     def assert_equal_when_decompressed(self, compressed_data, expected_array, mdi=0):
         x, y = expected_array.shape
         decompressed_data = mo_pack.decompress_wgdos(compressed_data, x, y, mdi)
@@ -51,11 +50,11 @@ class TestPackWGDOS(unittest.TestCase):
         np.testing.assert_array_equal(decompressed_data, expected)
 
 
-class TestdecompressWGDOS(unittest.TestCase):
+class TestdecompressWGDOS:
     def test_incorrect_size(self):
         data = np.arange(77, dtype=np.float32).reshape(7, 11)
         compressed_data = mo_pack.compress_wgdos(data)
-        with self.assertRaises(ValueError):
+        with pytest.raises(ValueError, match="WGDOS exit code was non-zero"):
             _ = mo_pack.decompress_wgdos(compressed_data, 5, 6)
 
     def test_different_shape(self):
@@ -65,9 +64,9 @@ class TestdecompressWGDOS(unittest.TestCase):
         np.testing.assert_array_equal(decompressed_data, data.reshape(4, 6))
 
     def test_real_data(self):
-        test_dir = os.path.dirname(os.path.abspath(__file__))
-        fname = os.path.join(test_dir, "test_data", "nae.20100104-06_0001_0001.pp")
-        with open(fname, "rb") as fh:
+        test_dir = Path(__file__).parent.resolve()
+        fname = test_dir / "test_data" / "nae.20100104-06_0001_0001.pp"
+        with fname.open("rb") as fh:
             fh.seek(268)
             data = mo_pack.decompress_wgdos(fh.read(339464), 360, 600)
         assert_almost_equal(data.mean(), 130.84694, decimal=1)
@@ -78,7 +77,3 @@ class TestdecompressWGDOS(unittest.TestCase):
             [385.265625, 373.921875, 368.5, 365.3125],
         ]
         assert_array_equal(data[:4, :4], expected)
-
-
-if __name__ == "__main__":
-    unittest.main()

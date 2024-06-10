@@ -131,6 +131,8 @@ ignore = [
     "PY004",  # Has docs folder
     # https://learn.scientific-python.org/development/guides/docs/#readthedocsyaml
     "RTD",    # ReadTheDocs
+
+    "PY007",  # TODO: Tox adoption blocked by SciTools/iris#5184.
 ]
 
 [tool.mypy]
@@ -143,3 +145,53 @@ exclude = [
     "src\\/mo_pack\\/tests$",
 ]
 strict = true
+
+[tool.ruff]
+line-length = 88
+src = ["src"]
+target-version = "py310"
+
+[tool.ruff.format]
+preview = false
+
+[tool.ruff.lint]
+ignore = [
+    # NOTE: Non-permanent exclusions should be added to the ".ruff.toml" file.
+
+    # flake8-commas (COM)
+    # https://docs.astral.sh/ruff/rules/#flake8-commas-com
+    "COM812",  # Trailing comma missing.
+    "COM819",  # Trailing comma prohibited.
+
+    # flake8-implicit-str-concat (ISC)
+    # https://docs.astral.sh/ruff/rules/single-line-implicit-string-concatenation/
+    # NOTE: This rule may cause conflicts when used with "ruff format".
+    "ISC001",  # Implicitly concatenate string literals on one line.
+    ]
+    preview = false
+    select = [
+        "ALL",
+        # list specific rules to include that is skipped using numpy convention.
+        "D212",  # Multi-line docstring summary should start at the first line
+    ]
+
+[tool.ruff.lint.isort]
+force-sort-within-sections = true
+
+[tool.ruff.lint.per-file-ignores]
+# All test scripts.
+
+"src/mo_pack/tests/*.py" = [
+    # https://docs.astral.sh/ruff/rules/undocumented-public-module/
+    "D100",  # Missing docstring in public module
+    "D101",  # Missing docstring in public class
+    "D102",  # Missing docstring in public method
+    "D205",  # 1 blank line required between summary line and description
+    "D401",  # 1 First line of docstring should be in imperative mood
+
+    "ANN",   # https://docs.astral.sh/ruff/rules/#flake8-annotations-ann
+    "S101",  # Use of assert detected
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"

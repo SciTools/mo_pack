@@ -1,5 +1,7 @@
 """Register the Cython extension."""
 
+from __future__ import annotations
+
 from pathlib import Path
 from typing import ClassVar, Self
 

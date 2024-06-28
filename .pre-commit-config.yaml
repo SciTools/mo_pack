@@ -82,7 +82,7 @@ repos:
     rev: 'v1.10.0'
     hooks:
     -   id: mypy
-        exclude: 'noxfile\.py|docs/conf\.py'
+        exclude: 'src\/mo_pack\/tests'
 
 -   repo: https://github.com/abravalheri/validate-pyproject
     # More exhaustive than Ruff RUF200.
@@ -102,3 +102,4 @@ repos:
     hooks:
       - id: numpydoc-validation
         types: [file, python]
+        exclude: 'src\/mo_pack\/tests'

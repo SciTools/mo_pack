@@ -1,9 +1,13 @@
-from setuptools import Command, Extension, setup
+"""Register the Cython extension."""
+
+from __future__ import annotations
 
 from pathlib import Path
+from typing import ClassVar
 
 from Cython.Build import cythonize
 import numpy as np
+from setuptools import Command, Extension, setup
 
 BASE_DIR = Path(__file__).resolve().parent
 PACKAGE_NAME = "mo_pack"
@@ -11,21 +15,24 @@ SRC_DIR = BASE_DIR / "src"
 PACKAGE_DIR = SRC_DIR / PACKAGE_NAME
 
 
-class CleanCython(Command):
+class CleanCython(Command):  # type: ignore[misc]
+    """Command for purging artifacts built by Cython."""
+
     description = "Purge artifacts built by Cython"
-    user_options = []
+    user_options: ClassVar[list[tuple[str, str, str]]] = []
 
-    def initialize_options(self):
-        pass
+    def initialize_options(self: CleanCython) -> None:
+        """Set options/attributes/caches used by the command to default values."""
 
-    def finalize_options(self):
-        pass
+    def finalize_options(self: CleanCython) -> None:
+        """Set final values for all options/attributes used by the command."""
 
-    def run(self):
+    def run(self: CleanCython) -> None:
+        """Execute the actions intended by the command."""
         for path in PACKAGE_DIR.rglob("*"):
             if path.suffix in (".pyc", ".pyo", ".c", ".so"):
                 msg = f"clean: removing file {path}"
-                print(msg)
+                print(msg)  # noqa: T201
                 path.unlink()
 
 

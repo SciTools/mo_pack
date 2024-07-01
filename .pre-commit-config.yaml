@@ -51,7 +51,7 @@ repos:
     -   id: trailing-whitespace
 
 -   repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: "v0.4.4"
+    rev: "v0.5.0"
     hooks:
     -   id: ruff
         types: [file, python]
@@ -60,14 +60,14 @@ repos:
         types: [file, python]
 
 -   repo: https://github.com/codespell-project/codespell
-    rev: "v2.2.6"
+    rev: "v2.3.0"
     hooks:
     -   id: codespell
         types_or: [asciidoc, python, markdown, rst]
         additional_dependencies: [tomli]
 
 -   repo: https://github.com/adamchainz/blacken-docs
-    rev: 1.16.0
+    rev: 1.18.0
     hooks:
     -   id: blacken-docs
         types: [file, rst]
@@ -79,7 +79,7 @@ repos:
         types: [file, python]
 
 -   repo: https://github.com/pre-commit/mirrors-mypy
-    rev: 'v1.10.0'
+    rev: 'v1.10.1'
     hooks:
     -   id: mypy
         exclude: 'src\/mo_pack\/tests'

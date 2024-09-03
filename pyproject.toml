@@ -148,7 +148,6 @@ strict = true
 
 [tool.ruff]
 line-length = 88
-src = ["src"]
 
 [tool.ruff.format]
 preview = false

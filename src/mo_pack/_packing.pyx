@@ -5,6 +5,8 @@
 import numpy as np
 cimport numpy as np
 
+# Must be called to use the C-API with Numpy
+np.import_array()
 
 #: The WGDOS packing algorithm generally produces smaller data payloads
 #: than the unpacked equivalent. However this is not a given, especially

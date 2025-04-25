@@ -20,7 +20,7 @@ class Test:
         src_buffer = np.arange(12, dtype=">f4").data
         result = decompress_rle(src_buffer, 3, 4)
         assert_array_equal(result, np.arange(12).reshape(3, 4))
-        assert result.dtype == np.dtype("=f4")
+        assert result.dtype == np.dtype("=f4")  # noqa: S101
 
     def test_mdi(self) -> None:
         """Test RLE decompression of data with MDI values."""

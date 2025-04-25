@@ -82,7 +82,6 @@ repos:
     rev: 'v1.15.0'
     hooks:
     -   id: mypy
-        #exclude: 'src\/mo_pack\/tests'
 
 -   repo: https://github.com/abravalheri/validate-pyproject
     # More exhaustive than Ruff RUF200.

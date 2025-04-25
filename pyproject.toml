@@ -138,9 +138,6 @@ ignore_missing_imports = true
 warn_unused_configs = true
 warn_unreachable = true
 enable_error_code = ["ignore-without-code", "redundant-expr", "truthy-bool"]
-#exclude = [
-#    "src\\/mo_pack\\/tests$",
-#]
 strict = true
 
 [tool.ruff]
@@ -170,8 +167,6 @@ force-sort-within-sections = true
    # "D102",  # Missing docstring in public method
    # "D205",  # 1 blank line required between summary line and description
     "D401",  # 1 First line of docstring should be in imperative mood
-
-    #"ANN",   # https://docs.astral.sh/ruff/rules/#flake8-annotations-ann
     "S101",  # Use of assert detected
 ]
 

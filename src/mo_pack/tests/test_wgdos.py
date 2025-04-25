@@ -36,7 +36,8 @@ class TestPackWGDOS:
 
     def test_accuracy(self):
         data = np.array(
-            [[0.1234, 0.2345, 0.3456], [0.4567, 0.5678, 0.6789]], dtype=np.float32
+            [[0.1234, 0.2345, 0.3456], [0.4567, 0.5678, 0.6789]],
+            dtype=np.float32,
         )
         compressed = mo_pack.compress_wgdos(data, accuracy=-4)
         decompressed_data = mo_pack.decompress_wgdos(compressed, 2, 3)

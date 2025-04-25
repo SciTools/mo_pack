@@ -24,10 +24,12 @@ class Test:
         assert_array_equal(result, original)
 
     def test_no_mdi(self):
+        """Test compression of data with no MDI values."""
         data = np.arange(42, dtype=np.float32).reshape(7, 6)
         self._test(data, 7, 6)
 
     def test_mdi(self):
+        """Test compression of data with MDI values."""
         data = np.arange(12, dtype=np.float32).reshape(3, 4) + 5
         data[1, 1:] = 999
         self._test(data, 3, 4)

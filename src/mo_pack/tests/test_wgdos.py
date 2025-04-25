@@ -20,16 +20,19 @@ class TestPackWGDOS:
     """Tests for WGDOS compression."""
 
     def assert_equal_when_decompressed(self, compressed_data, expected_array, mdi=0):
+        """Assert that decompressed data equal compressed data."""
         x, y = expected_array.shape
         decompressed_data = mo_pack.decompress_wgdos(compressed_data, x, y, mdi)
         np.testing.assert_array_equal(decompressed_data, expected_array)
 
     def test_pack_wgdos(self):
+        """Test WGDOS compression of data with no MDI values."""
         data = np.arange(42, dtype=np.float32).reshape(7, 6)
         compressed_data = mo_pack.compress_wgdos(data)
         self.assert_equal_when_decompressed(compressed_data, data)
 
     def test_mdi(self):
+        """Test WGDOS compression of data with MDI values."""
         data = np.arange(12, dtype=np.float32).reshape(3, 4)
         compressed_data = mo_pack.compress_wgdos(data, missing_data_indicator=4.0)
         expected_data = data
@@ -37,6 +40,7 @@ class TestPackWGDOS:
         self.assert_equal_when_decompressed(compressed_data, expected_data, mdi=4.0)
 
     def test_accuracy(self):
+        """Test WGDOS compression with reduced accuracy."""
         data = np.array(
             [[0.1234, 0.2345, 0.3456], [0.4567, 0.5678, 0.6789]],
             dtype=np.float32,
@@ -57,18 +61,21 @@ class TestdecompressWGDOS:
     """Tests for WGDOS decompression."""
 
     def test_incorrect_size(self):
+        """Test WGDOS decompression correctly fails for incorrect source array size."""
         data = np.arange(77, dtype=np.float32).reshape(7, 11)
         compressed_data = mo_pack.compress_wgdos(data)
         with pytest.raises(ValueError, match="WGDOS exit code was non-zero"):
             _ = mo_pack.decompress_wgdos(compressed_data, 5, 6)
 
     def test_different_shape(self):
+        """Test decompressed data equal to source data when both are reshaped."""
         data = np.arange(24, dtype=np.float32).reshape(8, 3)
         compressed_data = mo_pack.compress_wgdos(data)
         decompressed_data = mo_pack.decompress_wgdos(compressed_data, 4, 6)
         np.testing.assert_array_equal(decompressed_data, data.reshape(4, 6))
 
     def test_real_data(self):
+        """Test WGDOS decompression of a real PP dataset."""
         test_dir = Path(__file__).parent.resolve()
         fname = test_dir / "test_data" / "nae.20100104-06_0001_0001.pp"
         with fname.open("rb") as fh:

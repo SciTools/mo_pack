@@ -2,6 +2,7 @@ name: mo-pack-dev
 
 channels:
   - conda-forge
+  - nodefaults
 
 dependencies:
 

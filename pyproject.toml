@@ -168,8 +168,8 @@ force-sort-within-sections = true
 
 "src/mo_pack/tests/*.py" = [
     # https://docs.astral.sh/ruff/rules/undocumented-public-module/
-    "D100",  # Missing docstring in public module
-    "D101",  # Missing docstring in public class
+   # "D100",  # Missing docstring in public module
+   # "D101",  # Missing docstring in public class
     "D102",  # Missing docstring in public method
     "D205",  # 1 blank line required between summary line and description
     "D401",  # 1 First line of docstring should be in imperative mood

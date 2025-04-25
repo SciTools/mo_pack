@@ -12,6 +12,8 @@ from mo_pack import decompress_rle
 
 
 class Test:
+    """Tests for run-length encoding decompression."""
+
     def test_no_mdi(self):
         # The input to decompress_rle must be big-endian 32-bit floats.
         src_buffer = np.arange(12, dtype=">f4").data

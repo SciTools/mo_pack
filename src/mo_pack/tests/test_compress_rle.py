@@ -11,6 +11,8 @@ from mo_pack import compress_rle
 
 
 class Test:
+    """Tests for run-length encoding compression."""
+
     def test_no_mdi(self):
         data = np.arange(42, dtype=np.float32).reshape(7, 6)
         compressed_data = compress_rle(data)

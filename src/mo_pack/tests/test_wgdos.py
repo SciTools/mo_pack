@@ -17,6 +17,8 @@ import mo_pack
 
 
 class TestPackWGDOS:
+    """Tests for WGDOS compression."""
+
     def assert_equal_when_decompressed(self, compressed_data, expected_array, mdi=0):
         x, y = expected_array.shape
         decompressed_data = mo_pack.decompress_wgdos(compressed_data, x, y, mdi)
@@ -52,6 +54,8 @@ class TestPackWGDOS:
 
 
 class TestdecompressWGDOS:
+    """Tests for WGDOS decompression."""
+
     def test_incorrect_size(self):
         data = np.arange(77, dtype=np.float32).reshape(7, 11)
         compressed_data = mo_pack.compress_wgdos(data)

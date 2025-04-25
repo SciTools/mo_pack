@@ -16,6 +16,8 @@ MDI = 999
 
 
 class Test:
+    """Integration tests for run-length encoding compression."""
+
     def _test(self, original, rows, cols):
         compressed_data = compress_rle(original, missing_data_indicator=MDI)
         result = decompress_rle(compressed_data, rows, cols, missing_data_indicator=MDI)

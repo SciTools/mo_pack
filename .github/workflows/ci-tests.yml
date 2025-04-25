@@ -30,7 +30,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.11", "3.12"]
+        python-version: ["3.11", "3.12", "3.13"]
 
     steps:
     - uses: actions/checkout@v4
@@ -55,6 +55,5 @@ jobs:
 
     - name: "test with py${{ matrix.python-version }}"
       run: |
-        gcc -v
         python setup.py build_ext --inplace
         pytest

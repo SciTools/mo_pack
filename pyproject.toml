@@ -2,7 +2,7 @@
 # defined by PEP-518
 requires = [
     "Cython>=3",
-    "oldest-supported-numpy",
+    "numpy",
     "setuptools>=79",
     "setuptools_scm[toml]>=8",
 ]
@@ -22,6 +22,7 @@ classifiers = [
     "Programming Language :: Python :: 3 :: Only",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: Implementation :: CPython",
     "Topic :: Scientific/Engineering :: Atmospheric Science",
 ]

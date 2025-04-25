@@ -171,7 +171,7 @@ force-sort-within-sections = true
    # "D100",  # Missing docstring in public module
    # "D101",  # Missing docstring in public class
    # "D102",  # Missing docstring in public method
-    "D205",  # 1 blank line required between summary line and description
+   # "D205",  # 1 blank line required between summary line and description
     "D401",  # 1 First line of docstring should be in imperative mood
 
     "ANN",   # https://docs.astral.sh/ruff/rules/#flake8-annotations-ann

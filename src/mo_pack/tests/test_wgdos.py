@@ -2,10 +2,7 @@
 #
 # This file is part of mo_pack and is released under the BSD license.
 # See LICENSE in the root of the repository for full licensing details.
-"""Tests for the `mo_pack.compress_wgdos` and `mo_pack.decompress_wgdos`
-functions.
-
-"""
+"""Tests for `mo_pack.compress_wgdos` and `mo_pack.decompress_wgdos`."""
 
 from pathlib import Path
 

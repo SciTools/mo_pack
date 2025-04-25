@@ -2,10 +2,7 @@
 #
 # This file is part of mo_pack and is released under the BSD license.
 # See LICENSE in the root of the repository for full licensing details.
-"""Integration tests for the `mo_pack.compress_rle` and
-`mo_pack.decompress_rle` functions.
-
-"""
+"""Integration tests for `mo_pack.compress_rle` and `mo_pack.decompress_rle`."""
 
 import numpy as np
 from numpy.testing import assert_array_equal
@@ -24,12 +21,12 @@ class Test:
         assert_array_equal(result, original)
 
     def test_no_mdi(self):
-        """Test compression of data with no MDI values."""
+        """Test RLE compression of data with no MDI values."""
         data = np.arange(42, dtype=np.float32).reshape(7, 6)
         self._test(data, 7, 6)
 
     def test_mdi(self):
-        """Test compression of data with MDI values."""
+        """Test RLE compression of data with MDI values."""
         data = np.arange(12, dtype=np.float32).reshape(3, 4) + 5
         data[1, 1:] = 999
         self._test(data, 3, 4)

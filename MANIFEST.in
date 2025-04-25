@@ -7,3 +7,4 @@ include .gitattributes
 exclude .gitignore
 exclude .pre-commit-config.yaml
 include *.md
+exclude pixi.lock

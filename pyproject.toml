@@ -2,13 +2,12 @@
 # defined by PEP-518
 requires = [
     "Cython>=3",
-    "numpy",
+    "oldest-supported-numpy",
     "setuptools>=79",
     "setuptools_scm[toml]>=8",
 ]
 # defined by PEP-517
 build-backend = "setuptools.build_meta"
-
 
 [project]
 authors = [
@@ -36,18 +35,15 @@ license-files = ["LICENSE"]
 name = "mo_pack"
 requires-python = ">=3.11"
 
-
 [project.urls]
 Code = "https://github.com/SciTools/mo_pack"
 Issues = "https://github.com/SciTools/mo_pack/issues"
-
 
 [tool.check-manifest]
 ignore = [
     "src/mo_pack/_packing.c",
     "src/mo_pack/_version.py",
 ]
-
 
 [tool.pytest.ini_options]
 addopts = ["-ra", "--strict-config", "--strict-markers"]
@@ -57,29 +53,23 @@ minversion = "6.0"
 testpaths = "src/mo_pack"
 xfail_strict = true
 
-
 [tool.setuptools]
 zip-safe = false
 
-
 [tool.setuptools.dynamic]
 readme = {file = "README.md", content-type = "text/markdown"}
-
 
 [tool.setuptools.packages.find]
 include = ["mo_pack*"]
 where = ["src"]
 
-
 [tool.setuptools.package-data]
 mo_pack = ["tests/test_data/*.pp"]
-
 
 [tool.setuptools_scm]
 write_to = "src/mo_pack/_version.py"
 local_scheme = "dirty-tag"
 version_scheme = "release-branch-semver"
-
 
 [tool.numpydoc_validation]
 checks = [
@@ -171,3 +161,60 @@ force-sort-within-sections = true
 
 [tool.ruff.lint.pydocstyle]
 convention = "numpy"
+
+[tool.pixi.workspace]
+channels = ["conda-forge"]
+platforms = ["linux-64"]
+
+[tool.pixi.environments]
+default = { features = [], solve-group = "default" }
+dev = { features = ["dev"], solve-group = "default" }
+test = { features = ["test", "dev"], solve-group = "default" }
+
+py311 = { features = ["py311"], solve-group = "py311" }
+py311-dev = { features = ["dev", "py311"], solve-group = "py311" }
+py311-test = { features = ["test", "dev", "py311"], solve-group = "py311" }
+
+py312 = { features = ["py312"], solve-group = "py312" }
+py312-dev = { features = ["dev", "py312"], solve-group = "py312" }
+py312-test = { features = ["test", "dev", "py312"], solve-group = "py312" }
+
+py313 = { features = ["py313"], solve-group = "py313" }
+py313-dev = { features = ["dev", "py313"], solve-group = "py313" }
+py313-test = { features = ["test", "dev", "py313"], solve-group = "py313" }
+
+[tool.pixi.dependencies]
+cython = ">=3.0.12,<4"
+libmo_unpack = ">=3.1.2,<4"
+numpy = ">=1.25.0,<3"
+setuptools = ">=79.0.1,<80"
+setuptools-scm = ">=8.3.1,<9"
+
+[tool.pixi.feature.dev.dependencies]
+pre-commit = ">=4.2.0,<5"
+ruff = ">=0.11.6,<0.12"
+
+[tool.pixi.feature.dev.pypi-dependencies]
+mo-pack = { path = ".", editable = true }
+
+[tool.pixi.feature.dev.tasks]
+build = { cmd = ["python", "setup.py", "build_ext", "--inplace"], depends-on = ["clean"] }
+clean = { cmd = ["python", "setup.py", "clean_cython"] }
+fmt = "ruff format"
+lint = "ruff check"
+pytest = { cmd = ["pytest"], depends-on = ["build"] }
+
+[tool.pixi.feature.test.dependencies]
+pytest = ">=8.3.5,<9"
+
+[tool.pixi.feature.py311.dependencies]
+python = "3.11.*"
+pip = ">=25.0.1,<26"
+
+[tool.pixi.feature.py312.dependencies]
+python = "3.12.*"
+pip = ">=25.0.1,<26"
+
+[tool.pixi.feature.py313.dependencies]
+python = {version="3.13.*", build="*_cp313"}
+pip = ">=25.0.1,<26"

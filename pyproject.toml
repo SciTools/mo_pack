@@ -3,7 +3,7 @@
 requires = [
     "Cython>=3",
     "oldest-supported-numpy",
-    "setuptools>=64",
+    "setuptools>=79",
     "setuptools_scm[toml]>=8",
 ]
 # defined by PEP-517
@@ -17,7 +17,6 @@ authors = [
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Science/Research",
-    "License :: OSI Approved :: BSD License",
     "Natural Language :: English",
     "Operating System :: POSIX :: Linux",
     "Programming Language :: Python :: 3 :: Only",
@@ -33,7 +32,8 @@ dynamic = [
     "readme",
     "version",
 ]
-license.file = "LICENSE"
+license = "BSD-3-Clause"
+license-files = ["LICENSE"]
 name = "mo_pack"
 requires-python = ">=3.9"
 
@@ -60,7 +60,6 @@ xfail_strict = true
 
 
 [tool.setuptools]
-license-files = ["LICENSE"]
 zip-safe = false
 
 

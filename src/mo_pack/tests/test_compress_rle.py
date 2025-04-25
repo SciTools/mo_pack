@@ -13,7 +13,7 @@ from mo_pack import compress_rle
 class Test:
     """Tests for run-length encoding compression."""
 
-    def test_no_mdi(self):
+    def test_no_mdi(self) -> None:
         """Test RLE compression of data with no MDI values."""
         data = np.arange(42, dtype=np.float32).reshape(7, 6)
         compressed_data = compress_rle(data)
@@ -21,7 +21,7 @@ class Test:
         expected.byteswap(inplace=True)
         assert compressed_data == expected.data
 
-    def test_mdi(self):
+    def test_mdi(self) -> None:
         """Test RLE compression of data with MDI values."""
         data = np.arange(12, dtype=np.float32).reshape(3, 4) + 5
         data[1, 1:] = 999
@@ -30,7 +30,7 @@ class Test:
         expected.byteswap(inplace=True)
         assert compressed_data == expected.data
 
-    def test_mdi_larger(self):
+    def test_mdi_larger(self) -> None:
         """Test RLE compression fails if compressed data larger than original data."""
         data = np.arange(12, dtype=np.float32).reshape(3, 4) + 5
         data[data % 2 == 0] = 666

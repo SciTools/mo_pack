@@ -3,7 +3,7 @@
 requires = [
     "Cython>=3",
     "oldest-supported-numpy",
-    "setuptools>=64",
+    "setuptools>=79",
     "setuptools_scm[toml]>=8",
 ]
 # defined by PEP-517
@@ -17,7 +17,6 @@ authors = [
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Science/Research",
-    "License :: OSI Approved :: BSD License",
     "Natural Language :: English",
     "Operating System :: POSIX :: Linux",
     "Programming Language :: Python :: 3 :: Only",
@@ -33,7 +32,8 @@ dynamic = [
     "readme",
     "version",
 ]
-license.file = "LICENSE"
+license = "BSD-3-Clause"
+license-files = ["LICENSE"]
 name = "mo_pack"
 requires-python = ">=3.9"
 
@@ -60,7 +60,6 @@ xfail_strict = true
 
 
 [tool.setuptools]
-license-files = ["LICENSE"]
 zip-safe = false
 
 
@@ -123,8 +122,6 @@ exclude = [
 
 [tool.repo-review]
 ignore = [
-    # https://learn.scientific-python.org/development/guides/style/#PC170
-    "PC170",  # Uses PyGrep hooks
     # https://learn.scientific-python.org/development/guides/style/#PC180
     "PC180",  # Uses prettier
     # https://learn.scientific-python.org/development/guides/packaging-simple/#PY004
@@ -168,10 +165,10 @@ force-sort-within-sections = true
 
 "src/mo_pack/tests/*.py" = [
     # https://docs.astral.sh/ruff/rules/undocumented-public-module/
-    "D100",  # Missing docstring in public module
-    "D101",  # Missing docstring in public class
-    "D102",  # Missing docstring in public method
-    "D205",  # 1 blank line required between summary line and description
+   # "D100",  # Missing docstring in public module
+   # "D101",  # Missing docstring in public class
+   # "D102",  # Missing docstring in public method
+   # "D205",  # 1 blank line required between summary line and description
     "D401",  # 1 First line of docstring should be in imperative mood
 
     #"ANN",   # https://docs.astral.sh/ruff/rules/#flake8-annotations-ann

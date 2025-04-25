@@ -11,7 +11,10 @@ from mo_pack import compress_rle
 
 
 class Test:
+    """Tests for run-length encoding compression."""
+
     def test_no_mdi(self) -> None:
+        """Test RLE compression of data with no MDI values."""
         data = np.arange(42, dtype=np.float32).reshape(7, 6)
         compressed_data = compress_rle(data)
         expected = np.arange(42, dtype="f4")
@@ -19,6 +22,7 @@ class Test:
         assert compressed_data == expected.data
 
     def test_mdi(self) -> None:
+        """Test RLE compression of data with MDI values."""
         data = np.arange(12, dtype=np.float32).reshape(3, 4) + 5
         data[1, 1:] = 999
         compressed_data = compress_rle(data, missing_data_indicator=999)
@@ -27,8 +31,7 @@ class Test:
         assert compressed_data == expected.data
 
     def test_mdi_larger(self) -> None:
-        # Check that everything still works if the compressed data are
-        # *larger* than the original data.
+        """Test RLE compression fails if compressed data larger than original data."""
         data = np.arange(12, dtype=np.float32).reshape(3, 4) + 5
         data[data % 2 == 0] = 666
         with pytest.raises(ValueError, match="WGDOS exit code was non-zero"):

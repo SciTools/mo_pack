@@ -55,5 +55,6 @@ jobs:
 
     - name: "test with py${{ matrix.python-version }}"
       run: |
+        python -c "import numpy; print(numpy.get_include())"
         python setup.py build_ext --inplace
         pytest

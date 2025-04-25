@@ -5,10 +5,14 @@
 """Tests for `mo_pack.compress_wgdos` and `mo_pack.decompress_wgdos`."""
 
 from pathlib import Path
+from typing import TYPE_CHECKING
 
 import numpy as np
 from numpy.testing import assert_almost_equal, assert_array_equal
-from numpy.typing import NDArray
+
+if TYPE_CHECKING:
+    from numpy.typing import NDArray
+
 import pytest
 
 import mo_pack
@@ -20,7 +24,7 @@ class TestPackWGDOS:
     def assert_equal_when_decompressed(
         self,
         compressed_data: memoryview,
-        expected_array: NDArray,
+        expected_array: "NDArray",
         mdi: float = 0,
     ) -> None:
         """Assert that decompressed data equal compressed data."""

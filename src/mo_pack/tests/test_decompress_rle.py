@@ -12,7 +12,10 @@ from mo_pack import decompress_rle
 
 
 class Test:
+    """Tests for run-length encoding decompression."""
+
     def test_no_mdi(self):
+        """Test RLE decompression of data with no MDI values."""
         # The input to decompress_rle must be big-endian 32-bit floats.
         src_buffer = np.arange(12, dtype=">f4").data
         result = decompress_rle(src_buffer, 3, 4)
@@ -20,6 +23,7 @@ class Test:
         assert result.dtype == np.dtype("=f4")
 
     def test_mdi(self):
+        """Test RLE decompression of data with MDI values."""
         # The input to decompress_rle must be big-endian 32-bit floats.
         src_floats = np.arange(11, dtype=">f4")
         src_floats[5] = 666
@@ -29,11 +33,13 @@ class Test:
         assert_array_equal(result, [[0, 1, 2, 3], [4, 666, 666, 666], [7, 8, 9, 10]])
 
     def test_not_enough_source_data(self):
+        """Test RLE decompression fails when source data that is too small."""
         src_buffer = np.arange(4, dtype=">f4").data
         with pytest.raises(ValueError, match="RLE exit code was non-zero"):
             decompress_rle(src_buffer, 5, 6)
 
     def test_too_much_source_data(self):
+        """Test RLE decompression fails when source data that is too large."""
         src_buffer = np.arange(10, dtype=">f4").data
         with pytest.raises(ValueError, match="RLE exit code was non-zero"):
             decompress_rle(src_buffer, 2, 3)

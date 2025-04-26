@@ -29,6 +29,8 @@ Alternatively:
 > pytest
 ```
 
+For further details see the [pixi](https://github.com/prefix-dev/pixi) documentation.
+
 ## License
 
 `mo_pack` is distributed under the terms of the [BSD-3-Clause](https://spdx.org/licenses/BSD-3-Clause.html) license.

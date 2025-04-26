@@ -12,13 +12,21 @@ Provides Python bindings to the C library [libmo_unpack](https://github.com/SciT
 
 Supports both **RLE** and **WGDOS** encoding methods.
 
-## Developer Installation
+## Developer
 
 Creating a development environment, installing and building `mo_pack` then testing it couldn't be easier!
 
 For example, simply:
 ```shell
-pixi run --environment py313-test pytest
+> pixi run --environment py313-test pytest
+```
+
+Alternatively:
+```shell
+> pixi shell --environment py313-test
+> python setup.py clean_cython
+> python setup.py build_ext --inplace
+> pytest
 ```
 
 ## License

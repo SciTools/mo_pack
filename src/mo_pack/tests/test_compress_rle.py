@@ -5,6 +5,7 @@
 """Tests for the `mo_pack.compress_rle` function."""
 
 import numpy as np
+from numpy.testing import assert_array_equal
 import pytest
 
 from mo_pack import compress_rle
@@ -19,7 +20,7 @@ class Test:
         compressed_data = compress_rle(data)
         expected = np.arange(42, dtype="f4")
         expected.byteswap(inplace=True)
-        assert compressed_data == expected.data
+        assert_array_equal(compressed_data, expected.data)
 
     def test_mdi(self) -> None:
         """Test RLE compression of data with MDI values."""
@@ -28,7 +29,7 @@ class Test:
         compressed_data = compress_rle(data, missing_data_indicator=999)
         expected = np.array([5, 6, 7, 8, 9, 999, 3, 13, 14, 15, 16], dtype="f4")
         expected.byteswap(inplace=True)
-        assert compressed_data == expected.data
+        assert_array_equal(compressed_data, expected.data)
 
     def test_mdi_larger(self) -> None:
         """Test RLE compression fails if compressed data larger than original data."""

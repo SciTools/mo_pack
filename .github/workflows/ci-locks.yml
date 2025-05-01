@@ -24,10 +24,6 @@ defaults:
   run:
     shell: bash -l {0}
 
-permissions:
-  contents: write
-  pull-requests: write
-
 jobs:
   locks-update:
     name: "update lockfiles"

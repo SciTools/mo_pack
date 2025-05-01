@@ -56,12 +56,19 @@ jobs:
           pixi workspace export conda-explicit-spec --environment ${{ env.NAME }} --frozen --ignore-pypi-errors requirements
           pixi workspace export conda-environment --environment ${{ env.NAME }} requirements/mo-pack.yml
 
+      - name: "generate token"
+        uses: tibdex/github-app-token@3beb63f4bd073e61482598c45c71c1019b59b73a
+        id: generate-token
+        with:
+          app_id: ${{ secrets.AUTH_APP_ID }}
+          private_key: ${{ secrets.AUTH_APP_PRIVATE_KEY }}
+
       - name: "create pull-request"
         id: cpr
         if: ${{ hashFiles('diff.md') }}
         uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ steps.generate-token.outputs.token }}
           add-paths: |
             ${{ github.workspace }}/pixi.lock
             ${{ github.workspace }}/requirements/mo-pack*.txt

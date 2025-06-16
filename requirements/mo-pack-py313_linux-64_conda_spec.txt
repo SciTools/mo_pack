@@ -11,7 +11,7 @@ https://conda.anaconda.org/conda-forge/linux-64/tk-8.6.13-noxft_hd72426e_102.con
 https://conda.anaconda.org/conda-forge/linux-64/ncurses-6.5-h2d0b736_3.conda#47e340acb35de30501a76c7c799c41d7
 https://conda.anaconda.org/conda-forge/linux-64/readline-8.2-h8c095d6_2.conda#283b96675859b20a825f8fa30f311446
 https://conda.anaconda.org/conda-forge/noarch/python_abi-3.13-7_cp313.conda#e84b44e6300f1703cb25d29120c5b1d8
-https://conda.anaconda.org/conda-forge/noarch/ca-certificates-2025.4.26-hbd8a1cb_0.conda#95db94f75ba080a22eb623590993167b
+https://conda.anaconda.org/conda-forge/noarch/ca-certificates-2025.6.15-hbd8a1cb_0.conda#72525f07d72806e3b639ad4504c30ce5
 https://conda.anaconda.org/conda-forge/linux-64/openssl-3.5.0-h7b32b05_1.conda#de356753cfdbffcde5bb1e86e3aa6cd0
 https://conda.anaconda.org/conda-forge/linux-64/libgcc-ng-15.1.0-h69a702a_2.conda#ddca86c7040dd0e73b2b69bd7833d225
 https://conda.anaconda.org/conda-forge/linux-64/libuuid-2.38.1-h0b41bf4_0.conda#40b61aab5c7ba9ff276c41cfffe6b80b

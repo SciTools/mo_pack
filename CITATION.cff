@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If mo_pack played an important role in your research then please add us to your reference list by using the references below."
+title: "mo_pack"
+authors:
+    - name: "mo_pack repository contributors"
+abstract: "Provides Python bindings to the C library libmo_unpack which contains packing methods used to encode and decode the data payloads of Met Office UM Post-Processing and Fields files."
+license: "BSD-3-Clause"
+license-url: "https://spdx.org/licenses/BSD-3-Clause.html"
+url: "http://www.scitools.org.uk/"
+repository-code: "https://github.com/SciTools/mo_pack"
+type: "software"

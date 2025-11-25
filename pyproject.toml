@@ -52,6 +52,7 @@ log_cli_level = "INFO"
 minversion = "6.0"
 testpaths = "src/mo_pack"
 xfail_strict = true
+log_level = "INFO"
 
 [tool.setuptools]
 zip-safe = false

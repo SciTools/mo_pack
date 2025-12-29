@@ -22,7 +22,7 @@ https://conda.anaconda.org/conda-forge/linux-64/liblzma-5.8.1-hb9d3cd8_2.conda#1
 https://conda.anaconda.org/conda-forge/linux-64/libffi-3.5.2-h9ec8514_0.conda#35f29eec58405aaf55e01cb470d8c26a
 https://conda.anaconda.org/conda-forge/linux-64/libexpat-2.7.3-hecca717_0.conda#8b09ae86839581147ef2e5c5e229d164
 https://conda.anaconda.org/conda-forge/linux-64/zstd-1.5.7-hb78ec9c_6.conda#4a13eeac0b5c8e5b8ab496e6c4ddd829
-https://conda.anaconda.org/conda-forge/linux-64/ld_impl_linux-64-2.45-default_hbd61a6d_104.conda#a6abd2796fc332536735f68ba23f7901
+https://conda.anaconda.org/conda-forge/linux-64/ld_impl_linux-64-2.45-default_hbd61a6d_105.conda#3ec0aa5037d39b06554109a01e6fb0c6
 https://conda.anaconda.org/conda-forge/linux-64/bzip2-1.0.8-hda65f42_8.conda#51a19bba1b8ebfb60df25cde030b7ebc
 https://conda.anaconda.org/conda-forge/linux-64/python-3.13.11-hc97d973_100_cp313.conda#0cbb0010f1d8ecb64a428a8d4214609e
 https://conda.anaconda.org/conda-forge/noarch/typing_extensions-4.15.0-pyhcf101f3_0.conda#0caa1af407ecff61170c9437a808404d
@@ -60,8 +60,8 @@ https://conda.anaconda.org/conda-forge/linux-64/libopenblas-0.3.30-pthreads_h94d
 https://conda.anaconda.org/conda-forge/linux-64/libblas-3.11.0-5_h4a7cf45_openblas.conda#c160954f7418d7b6e87eaf05a8913fa9
 https://conda.anaconda.org/conda-forge/linux-64/liblapack-3.11.0-5_h47877c9_openblas.conda#b38076eb5c8e40d0106beda6f95d7609
 https://conda.anaconda.org/conda-forge/linux-64/libcblas-3.11.0-5_h0358290_openblas.conda#6636a2b6f1a87572df2970d3ebc87cc0
-https://conda.anaconda.org/conda-forge/linux-64/numpy-2.3.5-py313hf6604e3_0.conda#15f43bcd12c90186e78801fafc53d89b
+https://conda.anaconda.org/conda-forge/linux-64/numpy-2.4.0-py313hf6604e3_0.conda#07963f5dbb5351201035e1f8815ed8da
 https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-ng-15.2.0-hdf11a46_16.conda#1b3152694d236cf233b76b8c56bf0eae
 https://conda.anaconda.org/conda-forge/linux-64/libgcc-ng-15.2.0-h69a702a_16.conda#5a68259fac2da8f2ee6f7bfe49c9eb8b
 https://conda.anaconda.org/conda-forge/linux-64/libmo_unpack-3.1.2-hf484d3e_1001.tar.bz2#95f32a6a5a666d33886ca5627239f03d
-https://conda.anaconda.org/conda-forge/linux-64/cython-3.2.3-py313hc80a56d_0.conda#83f8ba04486916b1d161bc391b781bc7
+https://conda.anaconda.org/conda-forge/linux-64/cython-3.2.3-py313hc80a56d_1.conda#5e6c9f05c2825daad3d8006d3e2474ac

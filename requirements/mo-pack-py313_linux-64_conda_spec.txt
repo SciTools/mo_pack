@@ -29,7 +29,7 @@ https://conda.anaconda.org/conda-forge/noarch/typing_extensions-4.15.0-pyhcf101f
 https://conda.anaconda.org/conda-forge/noarch/typing-extensions-4.15.0-h396c80c_0.conda#edd329d7d3a4ab45dcf905899a7a6115
 https://conda.anaconda.org/conda-forge/noarch/tomli-2.4.0-pyhcf101f3_0.conda#72e780e9aa2d0a3295f59b1874e3768b
 https://conda.anaconda.org/conda-forge/noarch/setuptools-79.0.1-pyhff2d567_0.conda#fa6669cc21abd4b7b6c5393b7bc71914
-https://conda.anaconda.org/conda-forge/noarch/packaging-25.0-pyh29332c3_1.conda#58335b26c38bf4a20f399384c33cbcf9
+https://conda.anaconda.org/conda-forge/noarch/packaging-26.0-pyhcf101f3_0.conda#b76541e68fea4d511b1ac46a28dcd2c6
 https://conda.anaconda.org/conda-forge/noarch/zipp-3.23.0-pyhcf101f3_1.conda#30cd29cb87d819caead4d55184c1d115
 https://conda.anaconda.org/conda-forge/noarch/importlib-metadata-8.7.0-pyhe01879c_1.conda#63ccfdc3a3ce25b027b8767eb722fca8
 https://conda.anaconda.org/conda-forge/noarch/setuptools-scm-8.3.1-pyhd8ed1ab_0.conda#996376098e3648237b3efb0e0ad460c1

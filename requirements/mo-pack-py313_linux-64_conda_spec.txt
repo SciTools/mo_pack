@@ -39,11 +39,11 @@ https://conda.anaconda.org/conda-forge/noarch/iniconfig-2.3.0-pyhd8ed1ab_0.conda
 https://conda.anaconda.org/conda-forge/noarch/exceptiongroup-1.3.1-pyhd8ed1ab_0.conda#8e662bd460bda79b1ea39194e3c4c9ab
 https://conda.anaconda.org/conda-forge/noarch/colorama-0.4.6-pyhd8ed1ab_1.conda#962b9857ee8e7018c22f2776ffa0b2d7
 https://conda.anaconda.org/conda-forge/noarch/pytest-8.4.2-pyhcf101f3_1.conda#da0c42269086f5170e2b296878ec13a6
-https://conda.anaconda.org/conda-forge/noarch/platformdirs-4.9.2-pyhcf101f3_0.conda#4fefefb892ce9cc1539405bec2f1a6cd
-https://conda.anaconda.org/conda-forge/noarch/filelock-3.25.0-pyhd8ed1ab_0.conda#49a92015e912176999ae81bea11ea778
-https://conda.anaconda.org/conda-forge/noarch/python-discovery-1.1.1-pyhcf101f3_0.conda#956fd3cd4fb0c749143875b8a616c055
+https://conda.anaconda.org/conda-forge/noarch/platformdirs-4.9.4-pyhcf101f3_0.conda#82c1787f2a65c0155ef9652466ee98d6
+https://conda.anaconda.org/conda-forge/noarch/filelock-3.25.2-pyhd8ed1ab_0.conda#f58064cec97b12a7136ebb8a6f8a129b
+https://conda.anaconda.org/conda-forge/noarch/python-discovery-1.1.3-pyhcf101f3_0.conda#69fc0a99fc21b26b81026c72e00f83df
 https://conda.anaconda.org/conda-forge/noarch/distlib-0.4.0-pyhd8ed1ab_0.conda#003b8ba0a94e2f1e117d0bd46aebc901
-https://conda.anaconda.org/conda-forge/noarch/virtualenv-21.1.0-pyhcf101f3_0.conda#047d1cc5b89b7b15e2a368976e70fb1d
+https://conda.anaconda.org/conda-forge/noarch/virtualenv-21.2.0-pyhcf101f3_0.conda#704c22301912f7e37d0a92b2e7d5942d
 https://conda.anaconda.org/conda-forge/linux-64/yaml-0.2.5-h280c20c_3.conda#a77f85f77be52ff59391544bfe73390a
 https://conda.anaconda.org/conda-forge/linux-64/pyyaml-6.0.3-py313h3dea7bd_1.conda#f256753e840c3cd3766488c9437a8f8b
 https://conda.anaconda.org/conda-forge/noarch/nodeenv-1.10.0-pyhd8ed1ab_0.conda#eb52d14a901e23c39e9e7b4a1a5c015f

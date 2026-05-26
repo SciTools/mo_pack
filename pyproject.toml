@@ -1,12 +1,12 @@
 [build-system]
-# defined by PEP-518
+# Defined by PEP 518
 requires = [
     "Cython>=3",
     "oldest-supported-numpy",
     "setuptools>=79",
     "setuptools_scm[toml]>=8",
 ]
-# defined by PEP-517
+# Defined by PEP 517
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -46,31 +46,39 @@ ignore = [
 ]
 
 [tool.mypy]
-# See https://mypy.readthedocs.io/en/stable/config_file.html
+# https://mypy.readthedocs.io/en/stable/error_code_list2.html
+enable_error_code = [
+    "ignore-without-code",
+    "redundant-expr",
+    "truthy-bool",
+]
 ignore_missing_imports = true
-warn_unused_configs = true
-warn_unreachable = true
-enable_error_code = ["ignore-without-code", "redundant-expr", "truthy-bool"]
 strict = true
+warn_unreachable = true
+warn_unused_configs = true
 
 [tool.numpydoc_validation]
+# We have agreed a that some of the numpydoc rules that we are going to ignore.
 checks = [
     "all",  # Enable all numpydoc validation rules, apart from the following:
 
     # -> Docstring text (summary) should start in the line immediately
     #    after the opening quotes (not in the same line, or leaving a
     #    blank line in between)
+    # Reason for ignore: A chosen house-style
     "GL01",  # Permit summary line on same line as docstring opening quotes.
 
     # -> Closing quotes should be placed in the line after the last text
     #    in the docstring (do not close the quotes in the same line as
     #    the text, or leave a blank line between the last text and the
     #    quotes)
+    # Reason for ignore: A chosen house-style
     "GL02",  # Permit a blank line before docstring closing quotes.
 
     # -> Double line break found; please use only one blank line to
     #    separate sections or paragraphs, and do not leave blank lines
     #    at the end of docstrings
+    # Reason for ignore: We benefit from more flexability in formatting
     "GL03",  # Ignoring.
 
     # -> See Also section not found
@@ -156,23 +164,26 @@ pip = ">=25.0.1,<26"
 addopts = ["-ra", "--strict-config", "--strict-markers"]
 filterwarnings = ["error"]
 log_cli_level = "INFO"
+log_level = "INFO"
 minversion = "6.0"
 testpaths = "src/mo_pack"
-xfail_strict = true
-log_level = "INFO"
+xfail_strict = "True"
 
 [tool.repo-review]
+# We have agreed that we will permanently ignore the repo-review rules in the first half of this ignore list.
 ignore = [
     # https://learn.scientific-python.org/development/guides/style/#PC180
     # Not possible to run on the hardware used by the majority of our developers. Might change in future!
-    "PC180",  # Uses prettier
+    "PC180",  # Uses prettier.
     # https://learn.scientific-python.org/development/guides/packaging-simple#PP006
     "PP006",  # Uses dev dependency group
+
     # https://learn.scientific-python.org/development/guides/packaging-simple/#PY004
     "PY004",  # Has docs folder
     # https://learn.scientific-python.org/development/guides/docs/#readthedocsyaml
     "RTD",    # ReadTheDocs
 
+    # TODO: exceptions that still need investigating are below. Might be fixable, or might become permanent (above):
     "PY007",  # TODO: Tox adoption blocked by SciTools/iris#5184.
 ]
 
@@ -183,15 +194,20 @@ line-length = 88
 preview = false
 
 [tool.ruff.lint]
-    preview = false
-    select = [
-        "ALL",
-        # list specific rules to include that is skipped using numpy convention.
-        "D212",  # Multi-line docstring summary should start at the first line
-    ]
+preview = false
+select = [
+    "ALL",
+    # Note: the above "all" disables conflicting rules, if you want that
+    # rule it needs to be explicitly enabled below:
+    "D212",  # Multi-line docstring summary should start at the first line
+]
 
 [tool.ruff.lint.isort]
 force-sort-within-sections = true
+known-first-party = ["mo_pack"]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 22
 
 [tool.ruff.lint.pydocstyle]
 convention = "numpy"
@@ -210,6 +226,7 @@ where = ["src"]
 mo_pack = ["tests/test_data/*.pp"]
 
 [tool.setuptools_scm]
-write_to = "src/mo_pack/_version.py"
 local_scheme = "dirty-tag"
+# https://setuptools-scm.readthedocs.io/en/latest/extending/#version-number-construction
 version_scheme = "release-branch-semver"
+write_to = "src/mo_pack/_version.py"

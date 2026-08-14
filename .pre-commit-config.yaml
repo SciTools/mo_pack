@@ -53,7 +53,7 @@ repos:
     -   id: trailing-whitespace
 
 -   repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: "v0.15.20"
+    rev: "v0.16.1"
     hooks:
     -   id: ruff-check
         types: [file, python]
@@ -62,7 +62,7 @@ repos:
         types: [file, python]
 
 -   repo: https://github.com/codespell-project/codespell
-    rev: "v2.4.2"
+    rev: "v2.4.3"
     hooks:
     -   id: codespell
         types_or: [asciidoc, python, markdown, rst]
@@ -81,7 +81,7 @@ repos:
         types: [file, python]
 
 -   repo: https://github.com/pre-commit/mirrors-mypy
-    rev: 'v2.1.0'
+    rev: 'v2.3.0'
     hooks:
     -   id: mypy
 

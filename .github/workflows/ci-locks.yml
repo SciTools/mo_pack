@@ -35,7 +35,7 @@ jobs:
           fetch-depth: 0
 
       - name: "setup pixi"
-        uses: prefix-dev/setup-pixi@d3f436a425481402e6a95a1d1fc10331c708cd9e
+        uses: prefix-dev/setup-pixi@9936258fee697aff89b3fed6ca1f80a382ef694e
         with:
           run-install: false
 
@@ -62,7 +62,7 @@ jobs:
       - name: "create pull-request"
         id: cpr
         if: ${{ hashFiles('diff.md') }}
-        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1
+        uses: peter-evans/create-pull-request@15733dbdfeedb4f7fdb73d13c6f5ac83b710fab8
         with:
           token: ${{ steps.generate-token.outputs.token }}
           add-paths: |
